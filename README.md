@@ -61,6 +61,9 @@ A minimal repository dedicated to practical revision and consolidation of core W
 ### PostgreSQL
 
 - Install (`npm install pg`)
+- Create tables (`CREATE TABLE`)
+- (`SELECT`, `INSERT`, `UPDATE`, `DELETE`)
+- (`WHERE`,` ORDER BY`,` LIMIT`)
 
 ### Git & Best Practices
 
