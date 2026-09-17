@@ -18,7 +18,7 @@ function App() {
       <input placeholder="Write here" onChange={setInfo} value={input} />
 
       <button onClick={setItem}>Add</button>
-      {list.length > 0 && <h2>What you wrote was:</h2>}
+      {list.length > 0 && <h2>Your goals are:</h2>}
       <ul>
         {list.map((item, index) => (
           <li key={index}>{item}</li>
