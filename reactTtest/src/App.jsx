@@ -27,7 +27,12 @@ function App() {
         {list.map((item, index) => (
           <li key={index}>
             {item}
-            <button onClick={() => deleteItem(index)}>Delete</button>
+            <button
+              onClick={() => deleteItem(index)}
+              style={{ marginLeft: "10px" }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
