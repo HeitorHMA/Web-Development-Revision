@@ -1,4 +1,14 @@
 import { useState } from "react";
+function GoalItem({ text, onDelete }) {
+  return (
+    <li>
+      {text}
+      <button onClick={onDelete} style={{ marginLeft: "10px" }}>
+        Delete
+      </button>
+    </li>
+  );
+}
 
 function App() {
   const [input, setInput] = useState("");
@@ -25,15 +35,11 @@ function App() {
       {list.length > 0 && <h2>Your goals are:</h2>}
       <ul>
         {list.map((item, index) => (
-          <li key={index}>
-            {item}
-            <button
-              onClick={() => deleteItem(index)}
-              style={{ marginLeft: "10px" }}
-            >
-              Delete
-            </button>
-          </li>
+          <GoalItem
+            key={index}
+            text={item}
+            onDelete={() => deleteItem(index)}
+          />
         ))}
       </ul>
     </div>
