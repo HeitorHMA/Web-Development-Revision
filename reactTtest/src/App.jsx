@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function GoalItem({ text, onDelete }) {
   return (
     <li>
@@ -12,7 +12,10 @@ function GoalItem({ text, onDelete }) {
 
 function App() {
   const [input, setInput] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(() => {
+    const savedList = localStorage.getItem("my_goals");
+    return savedList ? JSON.parse(savedList) : [];
+  });
   function setInfo(e) {
     setInput(e.target.value);
   }
@@ -24,7 +27,12 @@ function App() {
     const newList = list.filter((item, index) => index != indexToDelete);
     setList(newList);
   }
-
+  useEffect(() => {
+    document.title = `Você tem ${list.length} tarefas`;
+  }, [list]);
+  useEffect(() => {
+    localStorage.setItem("my_goals", JSON.stringify(list));
+  }, [list]);
   return (
     <div style={{ padding: "20px" }}>
       <h1>To do List</h1>
