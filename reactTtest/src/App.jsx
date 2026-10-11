@@ -57,8 +57,8 @@ function App() {
           />
         ))}
       </ul>
-      <button onClick={catFinderFunction}></button>
-      <h1>Cat Fact Finder</h1>
+      <h3>Cat Fact Finder</h3>
+      <button onClick={catFinderFunction}>FIND CAT FACT</button>
     </div>
   );
 }
