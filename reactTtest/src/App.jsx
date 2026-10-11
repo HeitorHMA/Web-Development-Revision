@@ -27,6 +27,13 @@ function App() {
     const newList = list.filter((item, index) => index != indexToDelete);
     setList(newList);
   }
+  function catFinderFunction() {
+    fetch("https://catfact.ninja/fact")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.fact);
+      });
+  }
   useEffect(() => {
     document.title = `Você tem ${list.length} tarefas`;
   }, [list]);
@@ -50,6 +57,8 @@ function App() {
           />
         ))}
       </ul>
+      <button onClick={catFinderFunction}></button>
+      <h1>Cat Fact Finder</h1>
     </div>
   );
 }
