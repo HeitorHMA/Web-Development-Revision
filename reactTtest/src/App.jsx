@@ -27,11 +27,13 @@ function App() {
     const newList = list.filter((item, index) => index != indexToDelete);
     setList(newList);
   }
+  const [catFact, setCatFact] = useState("");
   function catFinderFunction() {
     fetch("https://catfact.ninja/fact")
       .then((res) => res.json())
       .then((data) => {
         console.log(data.fact);
+        setCatFact(data.fact);
       });
   }
   useEffect(() => {
@@ -57,7 +59,7 @@ function App() {
           />
         ))}
       </ul>
-      <h3>Cat Fact Finder</h3>
+      <h3>{catFact ? catFact : "Cat Fact Finder"}</h3>
       <button onClick={catFinderFunction}>FIND CAT FACT</button>
     </div>
   );
