@@ -1,4 +1,20 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes , Route, Link} from "react-router-dom";
+
+function App(){
+  return (
+  <BrowserRouter>
+  {/*eu não sei*/}
+  <nav>
+    <Link to = "/">Home</link> | <Link to = "/about">About</Link>
+  </nav>
+  <Routes>
+    <Route path="/" element={<h1>Página Inicial</h1>} />
+      <Route path="/about" element={<h1>Sobre Mim</h1>} />
+  </Routes>
+  </BrowserRouter>
+  );
+}
 function GoalItem({ text, onDelete }) {
   return (
     <li>
