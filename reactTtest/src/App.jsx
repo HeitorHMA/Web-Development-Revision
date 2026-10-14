@@ -35,13 +35,26 @@ function App() {
   }
 
   const [catFact, setCatFact] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   function catFinderFunction() {
+    setLoading(true);
+    setError(null);
     fetch("https://catfact.ninja/fact")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error while fetching");
+        }
+        return res.json();
+      })
       .then((data) => {
-        console.log(data.fact);
         setCatFact(data.fact);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
       });
   }
 
@@ -58,7 +71,7 @@ function App() {
       <div style={{ padding: "20px" }}>
         {/* Menu de Navegação do Router */}
         <nav style={{ marginBottom: "20px" }}>
-          <Link to="/">Home</Link> | <Link to="/about">About</Link>
+          <Link to="/">Home</Link> | <Link to="/about">Cat Fact Finder</Link>
         </nav>
 
         {/* Definição das Rotas */}
@@ -85,12 +98,22 @@ function App() {
                     />
                   ))}
                 </ul>
-                <h3>{catFact ? catFact : "Cat Fact Finder"}</h3>
+              </div>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <div>
+                {error && <h3>Error</h3>}
+                {loading && <h3>Loading...</h3>}
+                {!loading && !error && (
+                  <h3> {catFact ? catFact : "Cat Fact Finder"}</h3>
+                )}
                 <button onClick={catFinderFunction}>FIND CAT FACT</button>
               </div>
             }
           />
-          <Route path="/about" element={<h1>Sobre Mim / About Page</h1>} />
         </Routes>
       </div>
     </BrowserRouter>
