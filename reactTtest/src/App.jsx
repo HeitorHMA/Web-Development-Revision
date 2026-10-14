@@ -41,7 +41,7 @@ function App() {
   function catFinderFunction() {
     setLoading(true);
     setError(null);
-    fetch("https://catfact.ninja/fact")
+    fetch("https://catfact.ninja/fac")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error while fetching");
